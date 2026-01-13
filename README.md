@@ -1,69 +1,64 @@
-```markdown
-# 💬 Mutualfund Chat – RAG-Powered AI Assistant
+💬 AI Mutual Fund Chatbot (RAG-Powered)
 
-An AI-powered chatbot built to answer **mutual fund–related questions** using **Retrieval-Augmented Generation (RAG)**.  
-The system combines a **FastAPI backend**, **semantic vector search**, and a **modern React-based chat interface** to deliver accurate, contextual, and responsible financial explanations.
+An AI-powered financial chatbot that answers mutual fund–related questions using Retrieval-Augmented Generation (RAG).
+It combines a FastAPI backend, vector-based document search, and a React frontend for a modern chat experience.
 
-> ⚠️ **Disclaimer**  
-> This application is for **educational purposes only** and does **not provide personalized investment advice**.
+⚠️ Disclaimer:
+This chatbot does not provide personalized investment advice. It is for educational purposes only.
 
----
+🚀 Features
 
-## 🖼️ Application Screenshots
+🤖 AI-powered financial Q&A
 
-### Chat Interface
-![Mutualfund Chat UI](screenshots/chat-ui.png)
+📄 RAG-based document search (PDF / text data)
 
-### Landing Page
-![Mutualfund Chat Landing Page](screenshots/landing-page.png)
+🛑 Guardrails for investment advice
 
----
+🧠 Context-aware answers
 
-## 🚀 Features
+🗂 Persistent chat history
 
-- 🤖 AI-powered mutual fund Q&A  
-- 📄 RAG-based document retrieval (PDF / text sources)  
-- 🧠 Context-aware, document-grounded answers  
-- 🛑 Guardrails against personalized investment advice  
-- 🗂 Persistent chat history  
-- 🌐 Modern and responsive chat UI  
-- 🔒 Secure API key handling using environment variables  
+🌐 React-based modern UI
 
----
+🔒 Secure API key handling with .env
 
-## 🧱 Tech Stack
+🧱 Tech Stack
+Backend (FastAPI)
 
-### Backend (FastAPI)
+FastAPI – REST API framework
 
-- FastAPI – REST API framework  
-- Python – Core backend language  
-- Mistral AI – Large Language Model  
-- Retrieval-Augmented Generation (RAG)  
-- Vector Store – Semantic document search  
-- dotenv – Environment variable management  
-- CORS Middleware – Frontend integration  
+Python – Core backend language
 
-### Frontend (React)
+Mistral AI – LLM for responses
 
-- React (Vite) – Frontend framework  
-- Fetch / Axios – API communication  
-- Modern UI components  
-- Chat-based interface  
-- State management with React Hooks  
+RAG (Retrieval Augmented Generation)
 
----
+Vector Store – Semantic search over documents
 
-## 📁 Project Structure
+dotenv – Environment variable management
 
-```
+CORS Middleware – Frontend integration
 
+Frontend (React)
+
+React (Vite) – Frontend framework
+
+Axios / Fetch – API calls
+
+Modern UI Components
+
+Chat Interface
+
+State Management with Hooks
+
+📁 Project Structure
 .
 ├── backend/
 │   ├── main.py                # FastAPI application
 │   ├── rag/
 │   │   ├── vectorstore.py     # Vector search logic
-│   ├── chat_history.json     # Persistent chat history
-│   ├── .env                  # API keys (git ignored)
+│   ├── chat_history.json     # Chat persistence
+│   ├── .env                  # API keys (ignored by git)
 │   ├── requirements.txt
 │
 ├── frontend/
@@ -77,187 +72,154 @@ The system combines a **FastAPI backend**, **semantic vector search**, and a **m
 │   ├── package.json
 │   ├── vite.config.js
 │
-├── screenshots/
-│   ├── chat-ui.png
-│   ├── landing-page.png
-│
 └── README.md
 
-```
+🔍 How RAG Works Here
 
----
+User asks a question
 
-## 🔍 How Retrieval-Augmented Generation Works
+Question is searched in the vector database
 
-1. The user submits a query  
-2. The query is searched in the vector database  
-3. Relevant document chunks are retrieved  
-4. Retrieved context is combined with the user query  
-5. The LLM generates a grounded response  
+Relevant document chunks are retrieved
 
-**Fallback behavior**  
-If no relevant documents are found, the chatbot responds using general financial knowledge and clearly states that documents were not used.
+Retrieved context + user query are sent to Mistral
 
----
+AI responds grounded in documents
 
-## 🛑 Investment Advice Guardrails
+If no relevant document is found:
 
-The chatbot intentionally blocks questions such as:
+The bot answers using general financial knowledge
 
-- “Which mutual fund should I invest in?”  
-- “Where should I put my money?”  
-- “How much should I invest?”  
+Clearly mentions that documents were not used
 
-Instead, it focuses on:
-- Explaining financial concepts  
-- Discussing risk vs return  
-- Describing mutual fund categories  
-- Sharing general market insights  
+🛑 Investment Advice Guardrails
 
-This ensures responsible and compliant usage.
+The chatbot blocks personalized investment advice, such as:
 
----
+“Where should I invest?”
 
-## 🔐 Environment Variables
+“Which mutual fund is best?”
 
-Create a `.env` file inside the `backend/` directory:
+“How much money should I invest?”
 
-```
+Instead, it:
+
+Explains concepts
+
+Discusses risk vs return
+
+Describes types of mutual funds
+
+Mentions market trends
+
+This keeps the app safe, compliant, and responsible.
+
+🔐 Environment Variables
+
+Create a .env file inside backend/:
 
 MISTRAL_API_KEY=your_mistral_api_key_here
 
-````
 
-Do not commit the `.env` file to version control.
+❗ Never commit .env to GitHub.
 
----
-
-## 🧪 Backend Setup (FastAPI)
-
-### Create Virtual Environment
-```bash
+🧪 Backend Setup (FastAPI)
+1️⃣ Create Virtual Environment
 python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
-````
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-### Install Dependencies
-
-```bash
+2️⃣ Install Dependencies
 pip install -r requirements.txt
-```
 
-### Run the Server
-
-```bash
+3️⃣ Run Server
 uvicorn main:app --reload
-```
 
-Backend runs at:
 
-```
+Server will run at:
+
 http://127.0.0.1:8000
-```
 
----
-
-## 🔌 API Endpoints
-
-### Health Check
-
-```
+🔌 API Endpoints
+Health Check
 GET /
-```
 
-### Chat
-
-```
+Chat Endpoint
 POST /chat
-```
 
-Request:
 
-```json
+Request
+
 {
   "message": "What is an equity mutual fund?"
 }
-```
 
-Response:
 
-```json
+Response
+
 {
-  "reply": "An equity mutual fund primarily invests in stocks..."
+  "reply": "An equity mutual fund invests primarily in stocks..."
 }
-```
 
-### Chat History
-
-```
+Chat History
 GET /history
-```
 
----
-
-## 🎨 Frontend Setup (React)
-
-### Install Dependencies
-
-```bash
+🎨 Frontend Setup (React)
+1️⃣ Install Dependencies
 cd frontend
 npm install
-```
 
-### Start Development Server
-
-```bash
+2️⃣ Start React App
 npm run dev
-```
 
-Frontend runs at:
 
-```
+App runs at:
+
 http://localhost:5173
-```
 
----
+🔗 Frontend → Backend Connection
 
-## 📚 Chat History
+Example API call:
 
-* Stored in `chat_history.json`
-* Last 50 conversations retained
-* Automatically updated after every message
+fetch("http://127.0.0.1:8000/chat", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ message: userMessage }),
+});
 
----
+📚 Chat History
 
-## 🧠 Model Configuration
+Stored in chat_history.json
 
-* Model: `mistral-small`
-* Temperature: `0.2` (low hallucination, higher accuracy)
-* Context-aware responses
+Last 50 conversations retained
 
----
+Automatically saved on every chat
 
-## 🚧 Planned Enhancements
+🧠 Model Used
 
-* 🔐 Authentication
-* 📊 User-specific chat history
-* 📁 PDF upload from UI
-* 🔎 Advanced document filtering
-* ☁️ Cloud deployment (Docker / Hugging Face / AWS)
+Model: mistral-small
 
----
+Temperature: 0.2 (accurate, low hallucination)
 
-## ⚠️ Disclaimer
+Context-aware responses
 
-This application does **not provide financial advice**.
-Consult a **SEBI-registered financial advisor** before making investment decisions.
+🚧 Future Improvements
 
----
+🔐 Authentication
 
-## 👨‍💻 Author
+📊 User-specific chat history
 
-**Karthik Kallapiran**
+📁 Upload PDFs from UI
+
+🔎 Advanced document filtering
+
+☁️ Cloud deployment (Docker / Hugging Face / AWS)
+
+⚠️ Disclaimer
+
+This chatbot does not provide financial advice.
+Always consult a SEBI-registered financial advisor before making investment decisions.
+
+👨‍💻 Author
+
+Karthik Kallapiran
 AI • Full-Stack • RAG Systems
-
-```
-```
